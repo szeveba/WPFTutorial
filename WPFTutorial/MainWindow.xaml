@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTutorial"
         mc:Ignorable="d"
-        Title="Ablaknév" Height="450" Width="800">
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged"
+        Title="Ablaknév" Height="300" Width="800">
     <Grid>
-
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Magasság:"/>
+                <Label x:Name="Label_Height"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Szélesség:"/>
+                <Label x:Name="Label_Width"/>
+            </StackPanel>
+            <Button x:Name="Calculating" Content="ASD" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
