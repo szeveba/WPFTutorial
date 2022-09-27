@@ -9,7 +9,11 @@
         SizeChanged="Window_SizeChanged"
         Title="Ablaknév" Height="300" Width="800">
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Magasság:"/>
                 <Label x:Name="Label_Height"/>
@@ -18,7 +22,23 @@
                 <Label Content="Szélesség:"/>
                 <Label x:Name="Label_Width"/>
             </StackPanel>
-            <Button x:Name="Calculating" Content="ASD" Click="Button_Click"/>
+            <Button x:Name="BTN_Calculating" Content="ASD" Click="BTN_Calculating_Click" Margin="5"/>
         </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListBox x:Name="LB_Text" HorizontalContentAlignment="Center" SelectionChanged="LB_Text_SelectionChanged" Margin="5" />
+            <TextBox x:Name="TB_Text" Grid.Row="1" TextChanged="TB_Text_TextChanged" Margin="5"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Button x:Name="BTN_Text" Content="Hozzáadás" Click="BTN_Text_Click" Margin="5"/>
+                <Button x:Name="BTN_Save" Content="Save" Click="BTN_Save_Click" IsEnabled="False" Margin="5"/>
+                <Button x:Name="BTN_Delete" Content="Törlés" Click="BTN_Delete_Click" IsEnabled="False" Margin="5"/>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </Window>

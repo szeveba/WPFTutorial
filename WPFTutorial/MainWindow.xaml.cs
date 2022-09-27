@@ -37,14 +37,14 @@ namespace WPFTutorial
 
         }
 
-        private async void Calculating_Click(object sender, RoutedEventArgs e)
+        private async void BTN_Calculating_Click(object sender, RoutedEventArgs e)
         {
             var calcResult = await Task.Run(Calculating);
             var result = MessageBox.Show($"Számítás eredménye: {calcResult}\nMegismételjük?", "Eredmény", MessageBoxButton.YesNo, MessageBoxImage.Information);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    Calculating_Click(sender, e);
+                    BTN_Calculating_Click(sender, e);
                     break;
                 default:
                     break;
@@ -61,5 +61,34 @@ namespace WPFTutorial
             return x;
         }
 
+        private void BTN_Text_Click(object sender, RoutedEventArgs e)
+        {
+            if (TB_Text.Text != "")
+            {
+                LB_Text.Items.Add(TB_Text.Text);
+                TB_Text.Clear();
+            }
+        }
+
+        private void LB_Text_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TB_Text.Text = (string)LB_Text.SelectedItem;
+            BTN_Save.IsEnabled = LB_Text.SelectedItem != null;
+        }
+
+        private void TB_Text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BTN_Save.IsEnabled = !string.IsNullOrWhiteSpace(TB_Text.Text) && LB_Text.SelectedItem != null && (string)LB_Text.SelectedItem != TB_Text.Text;
+        }
+
+        private void BTN_Save_Click(object sender, RoutedEventArgs e)
+        {
+            LB_Text.Items[LB_Text.SelectedIndex] = TB_Text.Text;
+        }
+
+        private void BTN_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            LB_Text.Items.Remove(LB_Text.SelectedValue);
+        }
     }
 }
